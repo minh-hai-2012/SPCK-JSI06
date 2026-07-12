@@ -1,32 +1,70 @@
-let btn = document.getElementById("loginBtn");
+import { auth } from "../firebase.js";
 
-btn.addEventListener("click", function(){
 
-    let username = document.getElementById("username").value.trim();
-    let password = document.getElementById("password").value.trim();
-    let message = document.getElementById("message");
+import {
+    signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    if(username === "" || password === ""){
-        message.textContent = "Vui lòng nhập đầy đủ!";
+
+
+const loginBtn = document.querySelector("#loginBtn");
+
+
+
+loginBtn.addEventListener("click", function(){
+
+
+    const email =
+    document.querySelector("#email").value;
+
+
+    const password =
+    document.querySelector("#password").value;
+
+
+
+    if(email === "" || password === ""){
+
+        alert("Vui lòng nhập đầy đủ thông tin");
+
         return;
+
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    let user = users.find(u => u.name === username && u.pw === password);
 
-    if(user){
-        message.textContent = "Đăng nhập thành công!";
+    signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+    )
 
-        localStorage.setItem("currentUser", JSON.stringify(user));
 
-        setTimeout(()=>{
-            window.location.href = "home.html";
-        },1000);
+    .then((userCredential)=>{
 
-    }else{
-        message.textContent = "Sai tài khoản hoặc mật khẩu!";
-    }
+
+        alert("Đăng nhập thành công");
+
+
+        window.location.href =
+        "../home.html";
+
+
+    })
+
+
+    .catch((error)=>{
+
+
+        alert("Sai email hoặc mật khẩu");
+
+
+        console.log(error.message);
+
+
+    });
+
 
 });
 const firebaseConfig = {

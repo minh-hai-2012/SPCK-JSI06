@@ -1,45 +1,70 @@
-let username=document.querySelector('#username')
-let password=document.querySelector('#password')
-let submit=document.querySelector('#form-register')
+import { auth } from "../firebase.js";
 
-function saveUsers(arrayUser,user){
-    arrayUser.push(user)
-    // console.log(arrayUser);
-    localStorage.setItem('users',JSON.stringify(arrayUser))
+
+import {
+    createUserWithEmailAndPassword
 }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-submit.addEventListener('click',(e)=>{
-    e.preventDefault()
-    let username=document.querySelector('#username')
-    let password=document.querySelector('#password') 
 
-    if (password.value.length < 6) {
-        alert('Password quá ngắn, vui lòng nhập lại')
-        return
-    } else {
-        const user={
-        name:username.value,
-        pw:password.value
-    }
 
-    console.log('user ',user);
-    
-    if (localStorage.getItem('users')){
-        const arrayUser=JSON.parse(localStorage.getItem('users'))
-        console.log('arrayUser',arrayUser);
-        saveUsers(arrayUser,user)
-    }else{
-        const arrayUser=[]
-        saveUsers(arrayUser, user)
-    }
-    username.value=''
-    password.value=''
-    window.location.href='home.html'
+const registerBtn =
+document.querySelector("#registerBtn");
+
+
+
+registerBtn.addEventListener("click", function(){
+
+
+    const email =
+    document.querySelector("#email").value;
+
+
+    const password =
+    document.querySelector("#password").value;
+
+
+
+    if(email === "" || password === ""){
+
+        alert("Vui lòng nhập đầy đủ thông tin");
+
+        return;
 
     }
-    
-    
-})
+
+
+
+    createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+    )
+
+
+    .then((userCredential)=>{
+
+
+        alert("Đăng ký thành công");
+
+
+        window.location.href =
+        "../login/login.html";
+
+
+    })
+
+
+    .catch((error)=>{
+
+
+        alert(error.message);
+
+
+    });
+
+
+});
 const firebaseConfig = {
     apiKey: "AIzaSyByxRp27D7vCtqSOv6arz8iOngQr20IeQ4",
     authDomain: "hai-s-project.firebaseapp.com",
