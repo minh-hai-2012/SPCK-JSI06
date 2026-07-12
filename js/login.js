@@ -13,17 +13,15 @@ btn.addEventListener("click", function(){
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // 🔥 SỬA Ở ĐÂY (name + pw)
     let user = users.find(u => u.name === username && u.pw === password);
 
     if(user){
         message.textContent = "Đăng nhập thành công!";
 
-        // lưu user hiện tại
         localStorage.setItem("currentUser", JSON.stringify(user));
 
         setTimeout(()=>{
-            window.location.href = "home/home.html";
+            window.location.href = "home.html";
         },1000);
 
     }else{
@@ -31,3 +29,12 @@ btn.addEventListener("click", function(){
     }
 
 });
+const firebaseConfig = {
+    apiKey: "AIzaSyByxRp27D7vCtqSOv6arz8iOngQr20IeQ4",
+    authDomain: "hai-s-project.firebaseapp.com",
+    projectId: "hai-s-project",
+    storageBucket: "hai-s-project.firebasestorage.app",
+    messagingSenderId: "883858975739",
+    appId: "1:883858975739:web:907964be5a8c218fbd395e",
+    measurementId: "G-NBS721D6W0"
+  };
