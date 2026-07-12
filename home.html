@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhaccuatui</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">NCT</div>
+
+        <div class="menu">
+            <button id="homeBtn">Trang chủ</button>
+            <button id="playlistBtn">Playlist</button>
+            <button id="videoBtn">Video</button>
+            <button id="chartsBtn">BXH</button>
+            <button id="registerBtn">Đăng kí</button>
+            <button id="loginBtn">Đăng nhập</button>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <h1>Chào buổi sáng 👋</h1>
+
+        <div class="banner">
+
+            <div class="slides">
+                <img src="https://picsum.photos/id/1015/1200/300">
+                <img src="https://picsum.photos/id/1016/1200/300">
+                <img src="https://picsum.photos/id/1018/1200/300">
+            </div>
+
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+
+        </div>
+
+        <div class="music-player">
+
+            <img 
+            id="songThumb"
+            src="https://picsum.photos/id/237/200/200">
+
+            <div class="song-info">
+                <h3 id="songTitle">Chạy Ngay Đi</h3>
+                <p id="songArtist">Sơn Tùng M-TP</p>
+            </div>
+
+            <audio id="audioPlayer">
+                <source src="music.mp3" type="audio/mpeg">
+            </audio>
+
+            <div class="controls">
+                <button id="playBtn">▶</button>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Thể loại phổ biến</h2>
+
+        <div class="genres">
+
+            <div class="genre-card">
+                <img src="https://picsum.photos/id/238/300/200">
+                <h3>Pop</h3>
+            </div>
+
+            <div class="genre-card">
+                <img src="https://picsum.photos/id/239/300/200">
+                <h3>Rap</h3>
+            </div>
+
+            <div class="genre-card">
+                <img src="https://picsum.photos/id/240/300/200">
+                <h3>Lofi</h3>
+            </div>
+
+            <div class="genre-card">
+                <img src="https://picsum.photos/id/241/300/200">
+                <h3>EDM</h3>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Playlist nổi bật</h2>
+
+        <div class="playlist-container">
+
+            <div class="playlist-card">
+                <img src="https://picsum.photos/id/242/300/200">
+                <h3>Top Trending</h3>
+                <p>Nhạc hot hiện nay</p>
+            </div>
+
+            <div class="playlist-card">
+                <img src="https://picsum.photos/id/243/300/200">
+                <h3>Chill Night</h3>
+                <p>Nhạc thư giãn</p>
+            </div>
+
+            <div class="playlist-card">
+                <img src="https://picsum.photos/id/244/300/200">
+                <h3>Gaming Mix</h3>
+                <p>Dành cho game thủ</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/home.js"></script>
+
+</body>
+</html>
