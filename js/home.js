@@ -7,67 +7,48 @@ import {
 
 
 
-// =====================
+// ==========================
 // CHUYỂN TRANG
-// =====================
+// ==========================
 
-const homeBtn = document.querySelector('#homeBtn');
-const registerBtn = document.querySelector('#registerBtn');
-const loginBtn = document.querySelector('#loginBtn');
-const playlistBtn = document.querySelector('#playlistBtn');
-const chartsBtn = document.querySelector('#chartsBtn');
-const videoBtn = document.querySelector('#videoBtn');
-
+const homeBtn = document.querySelector("#homeBtn");
+const playlistBtn = document.querySelector("#playlistBtn");
+const chartsBtn = document.querySelector("#chartsBtn");
+const videoBtn = document.querySelector("#videoBtn");
 
 
 if(homeBtn){
-    homeBtn.onclick = () => {
+    homeBtn.onclick = function(){
         window.location.href = "home.html";
-    };
-}
-
-
-if(registerBtn){
-    registerBtn.onclick = () => {
-        window.location.href = "register/register.html";
-    };
-}
-
-
-if(loginBtn){
-    loginBtn.onclick = () => {
-        window.location.href = "login/login.html";
-    };
+    }
 }
 
 
 if(playlistBtn){
-    playlistBtn.onclick = () => {
+    playlistBtn.onclick = function(){
         window.location.href = "playlist/playlist.html";
-    };
+    }
 }
 
 
 if(chartsBtn){
-    chartsBtn.onclick = () => {
+    chartsBtn.onclick = function(){
         window.location.href = "BXH.html";
-    };
+    }
 }
 
 
 if(videoBtn){
-    videoBtn.onclick = () => {
+    videoBtn.onclick = function(){
         window.location.href = "Video.html";
-    };
+    }
 }
 
 
 
-
-
-// =====================
-// FIREBASE ĐĂNG NHẬP
-// =====================
+// ==========================
+// FIREBASE TÀI KHOẢN
+// ==========================
 
 
 const accountArea =
@@ -78,102 +59,93 @@ document.querySelector("#accountArea");
 if(accountArea){
 
 
-onAuthStateChanged(auth,(user)=>{
+    onAuthStateChanged(auth,function(user){
 
 
-    if(user){
+        if(user){
 
 
-        accountArea.innerHTML = `
+            accountArea.innerHTML = `
 
-            <span>
-                ${user.email}
-            </span>
+                <p>
+                    ${user.email}
+                </p>
 
+                <button id="logoutBtn">
+                    Đăng xuất
+                </button>
 
-            <button id="logoutBtn">
-                Đăng xuất
-            </button>
-
-        `;
-
-
-
-        const logoutBtn =
-        document.querySelector("#logoutBtn");
+            `;
 
 
 
-        logoutBtn.onclick = () => {
+            document
+            .querySelector("#logoutBtn")
+            .onclick = function(){
 
 
-            signOut(auth)
+                signOut(auth)
 
-            .then(()=>{
+                .then(function(){
 
-                alert("Đã đăng xuất");
+                    alert("Đã đăng xuất");
 
-                location.reload();
+                    location.reload();
 
-            })
-
-            .catch((error)=>{
-
-                console.log(error);
-
-            });
+                })
 
 
-        };
-
-
-    }
-
-    else{
-
-
-        accountArea.innerHTML = `
-
-
-            <button id="registerBtn">
-                Đăng ký
-            </button>
-
-
-            <button id="loginBtn">
-                Đăng nhập
-            </button>
-
-
-        `;
+            }
 
 
 
-        document
-        .querySelector("#registerBtn")
-        .onclick = () => {
+        }
 
-            window.location.href =
-            "register/register.html";
-
-        };
+        else{
 
 
+            accountArea.innerHTML = `
 
-        document
-        .querySelector("#loginBtn")
-        .onclick = () => {
-
-            window.location.href =
-            "login/login.html";
-
-        };
+                <button id="registerBtn">
+                    Đăng ký
+                </button>
 
 
-    }
+                <button id="loginBtn">
+                    Đăng nhập
+                </button>
+
+            `;
 
 
-});
+
+            document
+            .querySelector("#registerBtn")
+            .onclick=function(){
+
+                window.location.href =
+                "register/register.html";
+
+            }
+
+
+
+            document
+            .querySelector("#loginBtn")
+            .onclick=function(){
+
+                window.location.href =
+                "login/login.html";
+
+            }
+
+
+
+        }
+
+
+
+    });
 
 
 }
@@ -181,10 +153,9 @@ onAuthStateChanged(auth,(user)=>{
 
 
 
-
-// =====================
+// ==========================
 // SLIDER
-// =====================
+// ==========================
 
 
 let index = 0;
@@ -194,80 +165,76 @@ const slides =
 document.querySelector(".slides");
 
 
-
 if(slides){
 
 
-const total =
-slides.children.length;
+    const total =
+    slides.children.length;
 
 
 
-function showSlide(i){
+    function showSlide(i){
 
 
-    index = i;
+        index = i;
 
 
-    if(index >= total){
+        if(index >= total){
+            index = 0;
+        }
 
-        index = 0;
+
+        if(index < 0){
+            index = total - 1;
+        }
+
+
+        slides.style.transform =
+        `translateX(-${index * 100}%)`;
+
 
     }
 
 
-    if(index < 0){
 
-        index = total - 1;
+    const next =
+    document.querySelector(".next");
+
+
+    const prev =
+    document.querySelector(".prev");
+
+
+
+    if(next){
+
+        next.onclick=function(){
+
+            showSlide(index+1);
+
+        }
 
     }
 
 
-    slides.style.transform =
-    `translateX(-${index * 100}%)`;
 
-}
+    if(prev){
 
+        prev.onclick=function(){
 
+            showSlide(index-1);
 
-const next =
-document.querySelector(".next");
+        }
 
-
-const prev =
-document.querySelector(".prev");
+    }
 
 
 
-if(next){
+    setInterval(function(){
 
-next.onclick = () => {
+        showSlide(index+1);
 
-    showSlide(index + 1);
-
-};
-
-}
-
-
-
-if(prev){
-
-prev.onclick = () => {
-
-    showSlide(index - 1);
-
-};
-
-}
-
-
-
-setInterval(()=>{
-
-    showSlide(index + 1);
-
-},3000);
+    },3000);
 
 
 
@@ -276,11 +243,9 @@ setInterval(()=>{
 
 
 
-
-
-// =====================
+// ==========================
 // MUSIC PLAYER
-// =====================
+// ==========================
 
 
 const playBtn =
@@ -291,44 +256,41 @@ const audioPlayer =
 document.querySelector("#audioPlayer");
 
 
-
-let isPlaying = false;
+let isPlaying=false;
 
 
 
 if(playBtn && audioPlayer){
 
 
-
-playBtn.onclick = ()=>{
-
-
-    if(isPlaying){
+    playBtn.onclick=function(){
 
 
-        audioPlayer.pause();
+        if(isPlaying){
 
-        playBtn.innerHTML = "▶";
+
+            audioPlayer.pause();
+
+            playBtn.innerHTML="▶";
+
+
+        }
+
+        else{
+
+
+            audioPlayer.play();
+
+            playBtn.innerHTML="⏸";
+
+
+        }
+
+
+        isPlaying=!isPlaying;
 
 
     }
-
-    else{
-
-
-        audioPlayer.play();
-
-        playBtn.innerHTML = "⏸";
-
-
-    }
-
-
-    isPlaying = !isPlaying;
-
-
-};
-
 
 
 }

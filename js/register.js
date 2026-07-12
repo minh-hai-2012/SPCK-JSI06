@@ -1,4 +1,4 @@
-import { auth } from "../firebase.js";
+import { auth } from "./firebase.js";
 
 
 import {
@@ -13,7 +13,7 @@ document.querySelector("#registerBtn");
 
 
 
-registerBtn.addEventListener("click", function(){
+registerBtn.onclick = function(){
 
 
     const email =
@@ -27,7 +27,8 @@ registerBtn.addEventListener("click", function(){
 
     if(email === "" || password === ""){
 
-        alert("Vui lòng nhập đầy đủ thông tin");
+        document.querySelector("#message").innerHTML =
+        "Vui lòng nhập đầy đủ thông tin";
 
         return;
 
@@ -42,14 +43,14 @@ registerBtn.addEventListener("click", function(){
     )
 
 
-    .then((userCredential)=>{
+    .then(()=>{
 
 
         alert("Đăng ký thành công");
 
 
         window.location.href =
-        "../login/login.html";
+        "login.html";
 
 
     })
@@ -58,19 +59,12 @@ registerBtn.addEventListener("click", function(){
     .catch((error)=>{
 
 
-        alert(error.message);
+        document.querySelector("#message").innerHTML =
+        error.message;
 
 
     });
 
 
-});
-const firebaseConfig = {
-    apiKey: "AIzaSyByxRp27D7vCtqSOv6arz8iOngQr20IeQ4",
-    authDomain: "hai-s-project.firebaseapp.com",
-    projectId: "hai-s-project",
-    storageBucket: "hai-s-project.firebasestorage.app",
-    messagingSenderId: "883858975739",
-    appId: "1:883858975739:web:907964be5a8c218fbd395e",
-    measurementId: "G-NBS721D6W0"
-  };
+
+}

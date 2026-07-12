@@ -7,17 +7,33 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Đăng ký</h2>
+    <div class="container">
 
+        <h2>Đăng ký</h2>
     
-        <input type="text" id="username" placeholder="Tên đăng nhập">
-        <input type="password" id="password" placeholder="Mật khẩu">
+    
+        <input 
+            type="email" 
+            id="email" 
+            placeholder="Email">
+    
+    
+        <input 
+            type="password" 
+            id="password" 
+            placeholder="Mật khẩu">
+    
+    
+        <button id="registerBtn">
+            Đăng ký
+        </button>
+    
+    
+        <p id="message"></p>
+    
+    
+    </div>
 
-        <button form id="form-register">Đăng ký</button>
-    </form>
-</div>
-
-<script src="js/register.js"></script>
+    <script type="module" src="register.js"></script>
 </body>
 </html>
