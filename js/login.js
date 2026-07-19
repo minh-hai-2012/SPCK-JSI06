@@ -41,6 +41,8 @@ loginBtn.onclick = function(){
 
         document.querySelector("#message").innerHTML =
         error.message;
+        console.log(error);
+        
 
     });
 
