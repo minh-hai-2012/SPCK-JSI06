@@ -1,4 +1,4 @@
-import { auth } from "js/firebase.js";
+import { auth } from "./firebase.js";
 
 
 import {
@@ -58,13 +58,12 @@ registerBtn.onclick = function(){
 
     .catch((error)=>{
 
-
-        document.querySelector("#message").innerHTML =
-        error.message;
-        console.log(error);
-        
-
-
+        console.log(error.code);
+    
+        console.log(error.message);
+    
+        alert(error.code);
+    
     });
 
 
