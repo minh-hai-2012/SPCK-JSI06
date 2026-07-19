@@ -124,7 +124,7 @@ if(accountArea){
             .onclick=function(){
 
                 window.location.href =
-                "register/register.html";
+                "register.html";
 
             }
 
@@ -135,7 +135,7 @@ if(accountArea){
             .onclick=function(){
 
                 window.location.href =
-                "login/login.html";
+                "login.html";
 
             }
 
