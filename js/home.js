@@ -59,92 +59,58 @@ document.querySelector("#accountArea");
 if(accountArea){
 
 
-    onAuthStateChanged(auth,function(user){
-
+    onAuthStateChanged(auth, function(user){
 
         if(user){
-
-
+    
             accountArea.innerHTML = `
-
-                <p>
-                    ${user.email}
-                </p>
-
+                <p>${user.displayName || user.email}</p>
+    
                 <button id="logoutBtn">
                     Đăng xuất
                 </button>
-
             `;
-
-
-
-            document
-            .querySelector("#logoutBtn")
-            .onclick = function(){
-
-
+    
+            document.querySelector("#logoutBtn").onclick = function(){
+    
                 signOut(auth)
-
                 .then(function(){
-
+    
                     alert("Đã đăng xuất");
-
+    
                     location.reload();
-
-                })
-
-
-            }
-
-
-
+    
+                });
+    
+            };
+    
         }
-
         else{
-
-
+    
             accountArea.innerHTML = `
-
                 <button id="registerBtn">
                     Đăng ký
                 </button>
-
-
+    
                 <button id="loginBtn">
                     Đăng nhập
                 </button>
-
             `;
-
-
-
-            document
-            .querySelector("#registerBtn")
-            .onclick=function(){
-
-                window.location.href =
-                "register.html";
-
-            }
-
-
-
-            document
-            .querySelector("#loginBtn")
-            .onclick=function(){
-
-                window.location.href =
-                "login.html";
-
-            }
-
-
-
+    
+            document.querySelector("#registerBtn").onclick = function(){
+    
+                window.location.href = "register.html";
+    
+            };
+    
+            document.querySelector("#loginBtn").onclick = function(){
+    
+                window.location.href = "login.html";
+    
+            };
+    
         }
-
-
-
+    
     });
 
 

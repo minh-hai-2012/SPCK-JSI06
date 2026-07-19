@@ -1,12 +1,18 @@
 import { auth } from "./firebase.js";
 
 import {
-    signInWithEmailAndPassword
-} 
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup
+}
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-
 const loginBtn = document.querySelector("#loginBtn");
+const googleLoginBtn =
+document.querySelector("#googleLoginBtn");
+
+const provider =
+new GoogleAuthProvider();
 
 
 loginBtn.onclick = function(){
@@ -46,5 +52,24 @@ loginBtn.onclick = function(){
 
     });
 
+
+}
+googleLoginBtn.onclick = function(){
+
+    signInWithPopup(auth, provider)
+
+    .then((result)=>{
+
+        alert("Đăng nhập Google thành công");
+
+        window.location.href = "home.html";
+
+    })
+
+    .catch((error)=>{
+
+        alert(error.message);
+
+    });
 
 }
